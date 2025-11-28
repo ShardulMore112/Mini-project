@@ -1,0 +1,25 @@
+from collections import defaultdict
+
+text = " ronit vijay patankar is an RITIAN student "
+
+mapped = []
+words = text.lower().split()
+
+for w in words:
+    w = ''.join(char for char in w if char.isalnum())
+    if w:
+        mapped.append((w, 1))
+
+print("mapped_output:")
+print(mapped)
+
+frequency = defaultdict(int)
+
+for key, value in mapped:
+    frequency[key] += value
+
+  
+  print("\n frequency count:")
+   
+ for word, count in frequency.items():
+        print(word, ":", count)

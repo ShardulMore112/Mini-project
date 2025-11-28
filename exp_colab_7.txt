@@ -1,0 +1,21 @@
+from collections import defaultdict
+
+dataset = ['apple','banana','orange','peru']
+
+mapped = []
+
+for item in dataset:
+    mapped.append((item,1))
+
+print("mapped_output:")
+print(mapped)
+
+frequency = defaultdict(int)
+
+for key, value in mapped:
+    frequency[key] += value
+
+print("\nfrequency count:")
+
+for word, count in frequency.items():
+    print(word, ":", count)
