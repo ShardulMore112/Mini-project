@@ -1,0 +1,22 @@
+# ⿡ Start Hadoop daemons
+start-dfs.sh
+start-yarn.sh
+jps
+
+# ⿢ Create input file
+echo -e "hello world\nhello hadoop\nbig data world" > input.txt
+
+# ⿣ Upload file to HDFS
+hdfs dfs -mkdir /wordcount
+hdfs dfs -put input.txt /wordcount/
+hdfs dfs -ls /wordcount
+
+# ⿤ Remove old output if exists
+hdfs dfs -rm -r /wordcount_outputhdfs dfs -rm -r /wordcount_output
+
+# ⿥ Run Hadoop Word Count (built-in Java example)
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar wordcount /wordcount /wordcount_output
+
+# ⿦ View results
+hdfs dfs -ls /wordcount_output
+hdfs dfs -cat /wordcount_output/part-r-00000

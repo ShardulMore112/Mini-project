@@ -1,0 +1,100 @@
+## Line Graph 
+import matplotlib.pyplot as plt 
+x=[1,10] 
+y=[1,10] 
+plt.plot(x,y,color="Blue") 
+plt.title("Line Graph") 
+plt.xlabel("X Axis") 
+plt.ylabel("Y Axis") 
+plt.show() 
+
+# LIne graph with Legend , grid 
+x = [1,2,3,4,5,6] 
+y = [2,5,6,4,7,8] 
+plt.title("Line Plot Graph",fontsize=10) 
+plt.xlabel("X - Axis",fontsize=12) 
+plt.ylabel("Y - Axis",fontsize=12) 
+plt.grid() 
+plt.plot(x,y,color='red',label="Line Plot") 
+plt.legend(["Line Graph"], loc=4,fontsize=10) # A legend is an area describing the plt.show()
+
+# Bar Graph 
+import matplotlib.pyplot as plt 
+x = [1,2,3,4,5,6] 
+y = [20,50,60,40,70,80] 
+plt.bar(x,y,color="Red",width=0.2)
+plt.grid() 
+plt.title("Bar Graph",fontsize=15) 
+plt.xlabel("Roll",fontsize=15) 
+plt.ylabel("Marks",fontsize=15) 
+plt.show() 
+
+import matplotlib.pyplot as plt 
+slices = [80,90,50,60,70] #350 
+names = ['Studying','Eating','Playing','Gaming','Sleeping'] 
+cols = ['Red','purple','blue','yellow','green'] 
+plt.figure(figsize=(5,5)) 
+plt.pie(slices,labels=names, colors=cols,autopct="%1.3f%%") #autopct-This attribute controls how the percentages are di plt.legend(loc =4,fontsize=5) 
+plt.show() 
+# loc code in Legend parameter: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+
+# Pie Graph 
+import matplotlib.pyplot as plt 
+slices = [80,90,50,60,70] 
+names = ['Studying','Eating','Playing','Gaming','Sleeping'] 
+cols = ['Red','purple','blue','yellow','green'] 
+plt.figure(figsize=(8,8)) 
+plt.pie(slices,labels=names, colors=cols, autopct="%1.2f%%", explode=(0,0,0,0.1,0)) 
+plt.legend(loc=3) 
+plt.show() 
+
+import matplotlib.pyplot as plt 
+x = [1,2,3,4,5,6] 
+y = [2,5,6,4,7,8] 
+plt.title("Scatter Graph") 
+plt.xlabel("X Axis") 
+plt.ylabel("Y Axis") 
+plt.scatter(x,y,color="Red") 
+plt.show() 
+
+# Scatter Plot (Example 2) 
+import matplotlib.pyplot as plt 
+x1 = [1,2,3,4,5,6] 
+y1 = [2,5,6,4,7,8] 
+x2 = [2,5,6,8,7,8] 
+y2 = [1,2,3,4,5,6] 
+plt.title("Scatter Graph") 
+plt.xlabel("X Axis") 
+plt.ylabel("Y Axis") 
+plt.scatter(x1,y1,color="Red",s=120) 
+plt.scatter(x2,y2,color="Blue",marker="*",s=180) 
+plt.show()
+
+# Box Plot 
+'''Box Plots: 
+Display the distribution of data using quartiles, showing the median, quartiles, and outliers''' 
+''' 
+Minimum: The smallest value in the dataset. 
+First Quartile (Q1): The median of the lower half of the dataset. (25%) 
+Median (Q2): The middle value when the dataset is ordered. (50%) 
+Third Quartile (Q3): The median of the upper half of the dataset. (75%) 
+Maximum: The largest value in the dataset. 
+Example Dataset and Box Plot: 
+Let's say you have the following dataset: {2, 4, 6, 8, 10, 12}. 
+Minimum: 2 
+Q1: 4 
+Median (Q2): 7 
+Q3: 10 
+Maximum: 12 
+''' 
+import matplotlib.pyplot as plt 
+data = [[1, 2, 3, 4, 5,70], [3, 6, 8, 10, 12], [5, 10, 15, 20, 25]] 
+# Creating a box plot with custom colors 
+plt.boxplot(data, patch_artist=True, boxprops=dict(facecolor='skyblue')) 
+plt.title('Box Plot with Custom Colors') 
+plt.xlabel('Categories') 
+plt.ylabel('Values') 
+plt.show() 
+
+
+

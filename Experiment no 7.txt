@@ -1,0 +1,59 @@
+#1️⃣ Start Hadoop daemons
+start-dfs.sh
+start-yarn.sh
+jps
+
+# 2️⃣ Create sample dataset
+echo -e "user1,itemA\nuser2,itemB\nuser1,itemC\nuser3,itemA\nuser2,itemC\nuser1,itemA" > dataset.txt
+
+# 3️⃣ Upload dataset to HDFS
+hdfs dfs -mkdir -p /dataset
+hdfs dfs -put dataset.txt /dataset/
+hdfs dfs -ls /dataset
+
+# 4️⃣ Create mapper.py (correct indentation)
+cat << 'EOF' > mapper.py
+#!/usr/bin/env python3
+import sys
+for line in sys.stdin:
+    user, item = line.strip().split(",")
+    print(f"{item}\t1")
+EOF
+chmod +x mapper.py
+
+# 5️⃣ Create reducer.py (correct indentation)
+cat << 'EOF' > reducer.py
+#!/usr/bin/env python3
+import sys
+current_item = None
+count = 0
+
+for line in sys.stdin:
+    item, value = line.strip().split("\t")
+    value = int(value)
+    if item == current_item:
+        count += value
+    else:
+        if current_item:
+            print(f"{current_item}\t{count}")
+        current_item = item
+        count = value
+
+if current_item:
+    print(f"{current_item}\t{count}")
+EOF
+chmod +x reducer.py
+
+# 6️⃣ Remove old output if exists (ignore error if not exists)
+hdfs dfs -rm -r /dataset_output
+
+# 7️⃣ Run Hadoop Streaming MapReduce job
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \
+ -input /dataset \
+ -output /dataset_output \
+ -mapper mapper.py \
+ -reducer reducer.py
+
+# 8️⃣ View results
+hdfs dfs -ls /dataset_output
+hdfs dfs -cat /dataset_output/part-00000`

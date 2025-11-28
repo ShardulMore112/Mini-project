@@ -1,0 +1,50 @@
+spark in ubuntu(if Hadoop is already installed) =
+
+sudo apt update
+
+sudo apt install python3-pip -y
+
+sudo apt install python3-venv -y
+
+python3 -m venv sparkenv
+
+source sparkenv/bin/activate
+
+pip install pyspark
+
+pyspark
+
+from pyspark.ml.clustering import KMeans
+
+from pyspark.ml.linalg import Vectors
+
+from pyspark.sql import Row
+
+data = [
+    Row(features=Vectors.dense([0.0, 1.0])),
+    Row(features=Vectors.dense([1.0, 6.0])),
+    Row(features=Vectors.dense([9.0, 8.0])),
+    Row(features=Vectors.dense([8.0, 9.0]))
+]
+
+df = spark.createDataFrame(data)
+
+df.show()
+
+kmeans = KMeans (k=2, seed=1) #2 clusters
+
+model = kmeans.fit(df)
+
+centers = model.clusterCenters()
+
+for center in centers:
+	print(center)
+
+predictions = model.transform(df)
+
+predictions.show()
+
+spark.stop()
+
+exit()
+

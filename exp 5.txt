@@ -1,0 +1,59 @@
+exp 5
+
+same as above 
+open cmd
+then type 
+
+1) mongosh
+
+2) use bank123
+
+3) show collections
+
+4) db.bank123.insertMany([
+...   { "_id": 1, "name": "John Doe", "age": 25, "sex": "male" },
+...   { "_id": 2, "name": "Alice Smith", "age": 30, "sex": "female" },
+...   { "_id": 3, "name": "Bob Johnson", "age": 22, "sex": "male" },
+...   { "_id": 4, "name": "Emma White", "age": 30, "sex": "female" },
+...   { "_id": 5, "name": "Chris Brown", "age": 28, "sex": "male" },
+...   { "_id": 6, "name": "Karen Miller", "age": 22, "sex": "female" },
+...   { "_id": 7, "name": "David Wilson", "age": 35, "sex": "male" }
+... ])
+...
+
+
+ 5) db.bank123.countDocuments()
+
+ 6) db.bank123.countDocuments({ age: 30 })
+
+7) db.bank123.countDocuments({ sex: "male" })
+
+8) db.bank123.find().sort({ age: 1 })
+
+9) db.bank123.find().sort({ age: -1 })
+
+10) db.bank123.find().limit(3)
+
+11) db.bank123.find().skip(3)
+
+12) db.bank123.aggregate([
+...   { $group: { _id: "$sex", total: { $sum: 1 } } }
+... ])
+
+ 13) db.bank123.aggregate([
+...   { $group: { _id: null, avg_age: { $avg: "$age" } } }
+... ])
+
+ 14) db.bank123.aggregate([
+...   { $sort: { age: -1 } }
+... ])
+
+ 15) db.bank123.aggregate([
+...   { $limit: 2 }
+... ])
+
+
+16) db.bank123.aggregate([
+...   { $skip: 3 },
+...   { $limit: 2 }
+... ])

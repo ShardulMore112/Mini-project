@@ -1,0 +1,189 @@
+# Creating empty series
+import pandas as pd
+S = pd.Series()
+print(S)
+
+# Creating series from Array 
+import numpy as np 
+import pandas as pd 
+x=np.array([10, 20, 30, 40, 50]) 
+S = pd.Series(x) 
+print(S)
+
+# Creating series from array 
+import pandas as pd 
+marks=[80,90,50,67,99] 
+S =pd.Series (marks) 
+S
+
+#Creating custom index to series
+import pandas as pd
+sub=["maths", "hindi", "marathi", "EVS","SST"]
+s=pd.Series (marks, index=sub)
+s
+
+# Head and Tail of Series 
+import pandas as pd 
+marks=[80,90,50,67,99,77,56,80,67] 
+sub=["maths", "hindi", "marathi", "EVS", "SST", "English", "Grammar", "Java", "c"] 
+S=pd.Series (marks, index=sub) 
+print("all") 
+print(s) 
+print("First Five") 
+print(S.head()) 
+## show top five rows in series 
+print("Last Five") 
+print(S.tail())
+
+# Mean and Sum of series 
+import pandas as pd 
+marks=[80,90, 50, 67,99,77,56,80,67] 
+sub=["maths", "hindi", "marathi", "EVS", "SST", "English", "Grammar", "Java", "c"] 
+S=pd.Series (marks, index=sub) 
+print(S.mean()) 
+print(S.sum())
+
+#Sorting elements in series (Ascending by default)
+import pandas as pd
+# marks [80, 90, 50, 67,99,77,56,80,67] # This line was causing the TypeError
+sub=["maths","hindi", "marathi", "EVS", "SST", "English", "Grammar","Java", "c"]
+S=pd.Series (marks, index=sub) # Corrected 'index-sub' to 'index=sub'
+print(S)
+print(S.sort_values())
+
+#Sorting elements in series (Ascending by default)
+import pandas as pd
+# The following line was causing a TypeError: list indices must be integers or slices, not tuple.
+# It was incorrectly attempting to re-assign or index the 'marks' variable.
+# Since 'marks' is already defined in the kernel as a list of 9 elements,
+# we should remove this line or comment it out if we intend to use the existing 'marks'.
+# marks [80, 90, 50, 67,99,77,56]
+
+# To ensure the index matches the length of the 'marks' list (9 elements) from the kernel,
+# we update the 'sub' list as well.
+sub=["maths","hindi", "marathi", "EVS", "SST","English", "Grammar","Java", "c"]
+s=pd.Series (marks, index=sub)
+print(s.sort_values())
+
+# demo of Series 
+import numpy as np 
+import pandas as pd 
+marks=np.array([80, 90, 50, 67,99,77,56]) 
+sub=["maths","hindi", "marathi", "EVS", "SST", "English", "Grammar"] 
+S=pd.Series (marks, index=sub) 
+print(S) 
+print("The sum of elements in series is ",S.sum()) 
+print("The mean of elements in series is ",S.mean())
+print(S.sort_values (ascending=False)) 
+print("Element at index 2 is ", S[2]) 
+print("The size of Series is ",S.size) 
+print("Dimension of series is ",S.ndim)
+
+## creating series from dictionary 
+import pandas as pd 
+d={"maths":80, "hindi":90, "marathi":50,"EVS":67, "SST":99} 
+s=pd.Series (d) 
+print(s)
+
+## creating series from Scalar 
+## If we take the scalar values, then the index must be provided. 
+## The scalar value will be repeated for matching the length of the index. 
+import pandas as pd 
+s=pd.Series (10, index=['a', 'b', 'c', 'd', 'e','f']) 
+print(s)
+ 
+Dataframe in Pandas
+
+#We can create a DataFrame using following ways: 
+# dictionaray
+# Lists
+# Numpy-ndarrrays 
+# Series
+
+# Creating empty DataFrame 
+import pandas as pd 
+df=pd.DataFrame() 
+df
+
+## Creating dataframe using List 
+import pandas as pd 
+L=["python", "pandas", "Numpy", "OpenCv"] 
+d=pd.DataFrame(L) 
+d
+
+## Creating dataframe using dictionary of ndarray or List 
+import pandas as pd 
+di={"roll_no":[1,2,3,4,5], "Name": [ "A", "B", "C", "D", "E"],"Marks":[78,90,56,98,66], "Age" : [34,23,22,21,19]} 
+d=pd.DataFrame(di) 
+print(d)
+
+## Creating dataframe using dictionary of Series
+import pandas as pd
+di={
+    "roll_no": pd.Series ([11,12,13,14,15], index= [1,2,3,4,5]),
+    "Name": pd.Series (["ABC", "XYZ", "PQR", "STV", "DEF"],index= [1,2,3,4,5]),
+    "Marks": pd.Series ([78,90,56,98,66], index= [1,2,3,4,5])
+}
+d=pd.DataFrame(di)
+print(d)
+
+#Column selection in DataFrame 
+import pandas as pd 
+di={"roll_no": pd.Series ([11,12,13,14,15], index= [1,2,3,4,5]), 
+    "Name": pd.Series(["ABC", "XYZ", "PQR", "STV", "DEF"],index= [1,2,3,4,5])} 
+d=pd.DataFrame(di) 
+d['Name']
+
+#Row selection in DataFrame 
+import pandas as pd 
+di={"roll_no": pd.Series ([11,12,13,14,15], index= [1,2,3,4,5]), 
+    "Name": pd. Series (["ABC", "XYZ", "PQR", "STV", "DEF"], index= [1,2,3,4,5])} 
+d=pd.DataFrame(di) 
+print(d) 
+print(d.loc[4])
+
+#Adding Column with same value in DataFrame 
+import pandas as pd 
+di={"roll_no": pd.Series([11,12,13,14,15], index= [1,2,3,4,5]), 
+"Name": pd.Series (["ABC", "XYZ", "PQR", "STV", "DEF"], index= [1,2,3,4,5])} 
+d=pd.DataFrame(di) 
+d['College']="RIT" 
+print(d)
+
+#Adding Column with same value in DataFrame
+import pandas as pd
+dic={
+"roll": pd.Series([11,12,13,14,15], index=[1,2,3,4,5]),
+"Name": pd.Series(["abc", "def", "ghi", "jkl", "mno"],index= [1,2,3,4,5])}
+df=pd.DataFrame(dic)
+print(df)
+df["age"]=pd.Series ([30, 34, 40, 40, 28], index= [1,2,3,4,5])
+df["Marks"]=pd.Series ([78,89,99,67,56], index= [1,2,3,4,5])
+print(df)
+
+import pandas as pd 
+di={"Roll_no": pd.Series([11,12,13,14,15]), 
+    "Name" : pd.Series(["A", "B", "C", "D", "E"]), 
+    "Marks": pd.Series ([50,48,90,37,77])} 
+d=pd.DataFrame(di) 
+print(d)
+
+import pandas as pd
+di={"Roll_no": pd.Series ([11,12,13,14,15]),
+    "Name": pd.Series (["A", "B", "C", "D", "E"]),
+    "Marks": pd.Series ([50,48,90,37,77])}
+d=pd.DataFrame(di)
+print(d)
+grade=[]
+for i in range(0,len (d)):
+    mark=d.iloc[i,2]
+    if mark>=40:
+        grade.append("Pass")
+    else:
+        grade.append("Fail")
+d["Grade"]=grade
+d
+
+import pandas as pd 
+df=pd.read_csv('/content/Iris.csv') 
+df.describe()

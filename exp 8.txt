@@ -1,0 +1,45 @@
+from pyspark.sql import SparkSession
+from pyspark.ml.clustering import KMeans
+from pyspark.ml.feature import VectorAssembler
+
+# Start Spark session
+spark = SparkSession.builder.appName("ClusteringExample").getOrCreate()
+
+# Sample dataset
+data = spark.createDataFrame([
+    (0, 1.0, 2.0),
+    (1, 1.5, 1.8),
+    (2, 5.0, 8.0),
+    (3, 8.0, 8.0),
+    (4, 1.0, 0.6),
+    (5, 9.0, 11.0)
+], ["id", "x", "y"])
+
+# Assemble features into a single vector
+assembler = VectorAssembler(inputCols=["x", "y"], outputCol="features")
+dataset = assembler.transform(data)
+
+# Train K-Means model
+kmeans = KMeans().setK(2).setSeed(1).setFeaturesCol("features")
+model = kmeans.fit(dataset)
+
+# Make predictions
+predictions = model.transform(dataset)
+predictions.show()
+
+# Evaluate clustering
+wssse = model.summary.trainingCost
+print("Within Set Sum of Squared Errors = " + str(wssse))
+
+# Cluster centers
+centers = model.clusterCenters()
+print("Cluster Centers: ")
+for center in centers:
+    print(center)
+
+
+import matplotlib.pyplot as plt
+
+pandas_df = predictions.toPandas()
+plt.scatter(pandas_df['x'], pandas_df['y'], c=pandas_df['prediction'])
+plt.show()

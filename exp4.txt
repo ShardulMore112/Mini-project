@@ -1,0 +1,64 @@
+exp 4
+
+insure that mongodb is installed or not if not then install it also install its shell
+
+then next go to cmd
+in cmd type
+1)   mongosh
+this will display some mongosh log id and etc
+
+2)show dbs
+
+3)use employee
+
+4)  db.createCollection('emp');
+
+5)  db.student.insert({ regNo: "3014", name: "Test Student",
+... course: { courseName: "MCA", duration: "3 Years" }, address: { city: "Bangalore", state: "KA", country: "India" } })
+
+6)  db.emp.insert({ regNo: "3014", name: "Test Student",
+... course: { courseName: "MCA", duration: "3 Years" }, address: { city: "Bangalore", state: "KA", country: "India" } })
+
+7)  db.student.update(
+...     { "regNo": "3014" },       // filter
+...     { $set: { "name": "Viraj" } }   // update
+... )
+
+8)  db.posts.insertOne({
+...     "_id": ObjectId("5ec55af811ac5e2e2aafb2b9"),
+...     "name": "Working with Arrays",
+...     "user": "Database Rebel",
+...     "desc": "Maintaining an array of objects in a document",
+...     "content": "some content ...",
+...     "created": ISODate("2020-05-20T16:28:55.468Z"),
+...     "updated": ISODate("2020-05-20T16:28:55.468Z"),
+...     "tags": ["mongodb", "arrays"],
+...     "comments": [
+...         {
+...             "user": "DB Learner",
+...             "content": "Nice post.",
+...             "updated": ISODate("2020-05-20T16:35:57.461Z")
+...         }
+...     ]
+... })
+
+9)  db.emp.remove({"regNo":"3014"})
+
+10)  db.posts.updateOne(
+...     { _id: ObjectId("5ec55af811ac5e2e2aafb2b9"), "comments.user": "Database Rebel" },
+...     { $set: { "comments.$.content": "This is the new updated comment content" } }
+... )
+
+11)   db.posts.findOne({
+...     _id: ObjectId('66aa1611a3694bdb8ac4e4a1'),
+...     name: 'Working with Arrays',
+...     user: 'Database Rebel',
+...     desc: 'Maintaining an array of objects in a document;',
+...     content: 'some content...',
+...     created: ISODate('2024-07-31T10:46:35.201Z'),
+...     updated: ISODate('2024-07-31T10:46:35.201Z'),
+...     tags: ['mongodb','arrays']
+... })
+
+
+
